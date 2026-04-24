@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TC下载</title>
+  <style>
+    :root {
+      --bg-start: #f7f3ea;
+      --bg-end: #efe6d6;
+      --card: rgba(255, 255, 255, 0.78);
+      --text: #1f2937;
+      --muted: #6b7280;
+      --android: #1f8f5f;
+      --ios: #111827;
+      --shadow: 0 20px 45px rgba(73, 54, 24, 0.12);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.72), transparent 38%),
+        linear-gradient(180deg, var(--bg-start), var(--bg-end));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .wrap {
+      width: min(100%, 420px);
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 22px 24px;
+      border-radius: var(--radius);
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(10px);
+      opacity: 0.55;
+    }
+
+    .card::before {
+      width: 120px;
+      height: 120px;
+      top: -38px;
+      right: -36px;
+      background: rgba(34, 197, 94, 0.18);
+    }
+
+    .card::after {
+      width: 110px;
+      height: 110px;
+      left: -42px;
+      bottom: -40px;
+      background: rgba(17, 24, 39, 0.12);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 56px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(17, 24, 39, 0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .button:active {
+      transform: scale(0.98);
+      opacity: 0.96;
+    }
+
+    .button.android {
+      background: linear-gradient(135deg, #28b16f, var(--android));
+    }
+
+    .button.ios {
+      background: linear-gradient(135deg, #374151, var(--ios));
+    }
+
+    .button span {
+      font-size: 15px;
+      opacity: 0.88;
+      font-weight: 500;
+    }
+
+    .tips {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #8b7355;
+      text-align: center;
+    }
+
+    .wechat-mask {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: none;
+      padding: 20px;
+      background: rgba(17, 24, 39, 0.82);
+      backdrop-filter: blur(6px);
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .wechat-mask.show {
+      display: flex;
+    }
+
+    .wechat-panel {
+      width: min(100%, 420px);
+      margin-top: 32px;
+      padding: 24px 20px;
+      border-radius: 24px;
+      background: #fffaf2;
+      color: var(--text);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .wechat-panel h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .wechat-panel p {
+      color: #6b7280;
+    }
+
+    .wechat-note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f3ead8;
+      color: #7c6240;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .wechat-close {
+      width: 100%;
+      margin-top: 18px;
+      min-height: 48px;
+      border: 0;
+      border-radius: 16px;
+      background: #111827;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 36px 30px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="badge">快速下载</div>
+      <h1>一键安装 APP</h1>
+      <p>请选择你的设备版本进行下载，页面已适配移动端，打开即可安装。</p>
+
+      <div class="actions">
+        <a class="button android" href="https://z66heihei.github.io/tt/app-release.apk">
+          Android 下载
+          <span>APK 安装包</span>
+        </a>
+        <a class="button ios" href="https://z66heihei.github.io/tt/tt.mobileconfig">
+          iPhone 下载
+          <span>iOS 配置文件</span>
+        </a>
+      </div>
+
+      <div class="tips">如无法直接安装，请使用系统浏览器打开本页面。</div>
+    </section>
+  </main>
+
+  <div class="wechat-mask" id="wechatMask">
+    <div class="wechat-panel">
+      <h2>请在浏览器中打开</h2>
+      <p>检测到你当前在微信内打开，微信内可能无法正常下载安装包。</p>
+      <div class="wechat-note">
+        点击右上角菜单，然后选择“在浏览器打开”后，再进行下载安装。
+      </div>
+      <button class="wechat-close" type="button" id="wechatClose">我知道了</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var ua = window.navigator.userAgent.toLowerCase();
+      var isWeChat = /micromessenger/.test(ua);
+      var mask = document.getElementById('wechatMask');
+      var closeButton = document.getElementById('wechatClose');
+
+      if (isWeChat && mask) {
+        mask.classList.add('show');
+      }
+
+      if (closeButton && mask) {
+        closeButton.addEventListener('click', function () {
+          mask.classList.remove('show');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
