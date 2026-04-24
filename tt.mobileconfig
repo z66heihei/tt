@@ -18,7 +18,6 @@
     <string>天天领红包</string>
     <key>PayloadRemovalDisallowed</key>
     <false/>
-
     <key>PayloadContent</key>
     <array>
       <dict>
